@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.11.3 on darwin)" generated="2024-09-28T23:59:29.514928" rpa="false" schemaversion="5">
+<suite id="s1" name="googleSearch" source="/Users/nk/Documents/code/robot framework/googleSearch.robot">
+<test id="s1-t1" name="TS001_TC002_Verify Google Search Functionality with category" line="23">
+<kw name="Start testcase" owner="commonFunctionality">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-09-28T23:59:29.600996" level="INFO">Opening browser 'Chrome' to base url 'https://www.google.com/'.</msg>
+<arg>${URL}</arg>
+<arg>${Browser}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-09-28T23:59:29.600827" elapsed="1.831838"/>
+</kw>
+<status status="PASS" start="2024-09-28T23:59:29.600354" elapsed="1.832739"/>
+</kw>
+<kw name="TS001_TC001_Verify">
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-09-28T23:59:31.434093" level="INFO">Typing text 'Mobile' into text field '//*[@id="APjFqb"]'.</msg>
+<arg>//*[@id="APjFqb"]</arg>
+<arg>Mobile</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-28T23:59:31.433780" elapsed="0.168536"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2024-09-28T23:59:31.609351" level="INFO">Sending key(s) ('ENTER',) to //*[@id="APjFqb"] element.</msg>
+<msg time="2024-09-28T23:59:31.963417" level="INFO">Pressing special key ENTER to element.</msg>
+<msg time="2024-09-28T23:59:31.963673" level="INFO">Releasing special key ENTER.</msg>
+<arg>//*[@id="APjFqb"]</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2024-09-28T23:59:31.602743" elapsed="1.098799"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Mobile</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-09-28T23:59:32.701785" elapsed="0.017549"/>
+</kw>
+<status status="PASS" start="2024-09-28T23:59:31.433461" elapsed="1.286041"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-28T23:59:32.720045" level="INFO">Clicking element '//*[@id="hdtb-sc"]/div/div/div[1]/div/div[2]/a/div'.</msg>
+<arg>//*[@id="hdtb-sc"]/div/div/div[1]/div/div[2]/a/div</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-28T23:59:32.719757" elapsed="0.708006"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-28T23:59:33.428451" level="INFO">Clicking element '//*[@id="hdtb-tls"]'.</msg>
+<arg>//*[@id="hdtb-tls"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-28T23:59:33.428248" elapsed="0.064403"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-28T23:59:33.493617" level="INFO">Clicking element '//*[@id="tn_1"]/span[6]/a/div/span'.</msg>
+<arg>//*[@id="tn_1"]/span[6]/a/div/span</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-28T23:59:33.493118" elapsed="0.396433"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-28T23:59:33.889978" level="INFO">Clicking element '//*[@id="gmcr_imgc3"]/div/span[1]'.</msg>
+<arg>//*[@id="gmcr_imgc3"]/div/span[1]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-28T23:59:33.889798" elapsed="0.036203"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2024-09-28T23:59:33.926422" level="INFO">Clicking element '//*[@id="s1zaZb"]/div[5]/div[9]/div[2]/input[2]'.</msg>
+<arg>//*[@id="s1zaZb"]/div[5]/div[9]/div[2]/input[2]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2024-09-28T23:59:33.926225" elapsed="0.151946"/>
+</kw>
+<kw name="Finish testcase" owner="commonFunctionality">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-09-28T23:59:34.079556" elapsed="0.086053"/>
+</kw>
+<status status="PASS" start="2024-09-28T23:59:34.078792" elapsed="0.087013"/>
+</kw>
+<status status="PASS" start="2024-09-28T23:59:29.600035" elapsed="4.565926"/>
+</test>
+<doc>Google Search Functionality</doc>
+<status status="PASS" start="2024-09-28T23:59:29.516768" elapsed="4.649768"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="googleSearch">googleSearch</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

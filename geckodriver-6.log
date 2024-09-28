@@ -1,0 +1,18 @@
+1717428448777	geckodriver	INFO	Listening on 127.0.0.1:62521
+1717428448798	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/App ... s" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/hy/wg23sn4d7jgbsllvm3gr2q5r0000gn/T/rust_mozprofileO42nnJ"
+1717428449049	Marionette	INFO	Marionette enabled
+1717428449091	Marionette	INFO	Listening on port 62529
+Read port: 62529
+2024-06-03 22:27:29.121 plugin-container[83399:1227394] nil host used in call to allowsSpecificHTTPSCertificateForHost
+2024-06-03 22:27:29.121 plugin-container[83399:1227394] nil host used in call to allowsAnyHTTPSCertificateForHost:
+2024-06-03 22:27:29.131 plugin-container[83399:1227394] nil host used in call to allowsSpecificHTTPSCertificateForHost
+2024-06-03 22:27:29.131 plugin-container[83399:1227394] nil host used in call to allowsAnyHTTPSCertificateForHost:
+2024-06-03 22:27:29.131 plugin-container[83399:1227413] nil host used in call to allowsSpecificHTTPSCertificateForHost
+2024-06-03 22:27:29.131 plugin-container[83399:1227413] nil host used in call to allowsAnyHTTPSCertificateForHost:
+WebDriver BiDi listening on ws://127.0.0.1:62522
+1717428449172	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+UNSUPPORTED (log once): POSSIBLE ISSUE: unit 1 GLD_TEXTURE_INDEX_2D is unloadable and bound to sampler type (Float) - using zero texture because texture unloadable
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/hy/wg23sn4d7jgbsllvm3gr2q5r0000gn/T/rust_mozprofileO42nnJ/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:62522/devtools/browser/9d6bb11d-6038-454a-a6c1-ae44bd169461
+1717428676363	Marionette	INFO	Stopped listening on port 62529
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.

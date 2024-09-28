@@ -1,0 +1,17 @@
+1717428302334	geckodriver	INFO	Listening on 127.0.0.1:62271
+1717428302350	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/App ... s" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/hy/wg23sn4d7jgbsllvm3gr2q5r0000gn/T/rust_mozprofilek8Hh7i"
+1717428302818	Marionette	INFO	Marionette enabled
+1717428302882	Marionette	INFO	Listening on port 62279
+WebDriver BiDi listening on ws://127.0.0.1:62272
+Read port: 62279
+2024-06-03 22:25:03.053 plugin-container[82149:1213881] nil host used in call to allowsSpecificHTTPSCertificateForHost
+2024-06-03 22:25:03.054 plugin-container[82149:1213881] nil host used in call to allowsAnyHTTPSCertificateForHost:
+2024-06-03 22:25:03.138 plugin-container[82149:1213881] nil host used in call to allowsSpecificHTTPSCertificateForHost
+2024-06-03 22:25:03.138 plugin-container[82149:1213881] nil host used in call to allowsAnyHTTPSCertificateForHost:
+2024-06-03 22:25:03.139 plugin-container[82149:1213956] nil host used in call to allowsSpecificHTTPSCertificateForHost
+2024-06-03 22:25:03.139 plugin-container[82149:1213956] nil host used in call to allowsAnyHTTPSCertificateForHost:
+1717428303154	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+UNSUPPORTED (log once): POSSIBLE ISSUE: unit 1 GLD_TEXTURE_INDEX_2D is unloadable and bound to sampler type (Float) - using zero texture because texture unloadable
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/hy/wg23sn4d7jgbsllvm3gr2q5r0000gn/T/rust_mozprofilek8Hh7i/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:62272/devtools/browser/30ca4a1f-280b-4724-b165-c50cc2ceb583
+1717428670586	Marionette	INFO	Stopped listening on port 62279
