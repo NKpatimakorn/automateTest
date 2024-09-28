@@ -3,8 +3,6 @@ Documentation  Google Search Functionality
 Library  SeleniumLibrary
 Resource  commonFunctionality.robot  #extent code จากไฟล์อื่นมาใช้ เอาไว้สำหรับพวกฟังก์ชั่นที่ใช้ในหลาย TS 
 
-
-
 #Search on google
 *** Test Cases *** 
 
