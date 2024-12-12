@@ -11,8 +11,6 @@ ${BROWSER}    chrome
 Start testcase
     Open Browser    ${URL}    ${BROWSER}
     Maximize Browser Window
-    Sleep    5
-    Close Browser
 
 Finish testcase
     [Teardown]
