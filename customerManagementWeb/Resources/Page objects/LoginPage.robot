@@ -2,12 +2,12 @@
 Library    SeleniumLibrary
 Resource    ./ContactsPage.robot
 *** Variables ***
-${LOGIN_PAGE_HEADER} =    Login
-${EMAIL_FIELD} =        //*[@id="email-id"]
-${PASSWORD_FIELD} =        //*[@id="password"]
-${LOGIN_BUTTON} =        id=submit-id
-${VALID_EMAIL} =         email@gmail.com
-${VALID_PASSWORD} =     P@ssw0rd
+${LOGIN_PAGE_HEADER} =       Login
+${EMAIL_FIELD} =             //*[@id="email-id"]
+${PASSWORD_FIELD} =          //*[@id="password"]
+${LOGIN_BUTTON} =            id=submit-id
+${VALID_EMAIL} =             email@gmail.com
+${VALID_PASSWORD} =          P@ssw0rd
 ${REMEMBER_ME_CHECKBOX} =    //*[@id="remember"]   
 *** Keywords ***
 

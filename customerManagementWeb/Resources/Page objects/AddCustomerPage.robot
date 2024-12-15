@@ -1,20 +1,20 @@
 *** Settings ***
 Library    SeleniumLibrary
 *** Variables ***
-${ADD_CUSTOMER_PAGE_HEADER} =    Add Customer
-${NEW_EMAIL_FIELD} =        id=EmailAddress
-${NEW_EMAIL} =                newEmail@gmail.com
-${FIRST_NAME_FIELD} =        id=FirstName
-${FIRST_NAME} =    firstname
-${LAST_NAME_FIELD} =        id=LastName
-${LAST_NAME} =    lastname
-${CITY_FIELD} =         id=City
-${CITY} =    City
-${STATE_LIST} =    id=StateOrRegion
-${GENDER_RADIO} =   gender
-${OPTIONAL_CHECKBOX} =    name=promos-name
-${SUBMIT_BUTTON} =     //*[@id="loginform"]/div/div/div/div/form/button
-${CANCLE_BUTTON} =     //*[@id="loginform"]/div/div/div/div/form/a
+${ADD_CUSTOMER_PAGE_HEADER} =        Add Customer
+${NEW_EMAIL_FIELD} =                 id=EmailAddress
+${NEW_EMAIL} =                       newEmail@gmail.com
+${FIRST_NAME_FIELD} =                id=FirstName
+${FIRST_NAME} =                      firstname
+${LAST_NAME_FIELD} =                 id=LastName
+${LAST_NAME} =                       lastname
+${CITY_FIELD} =                      id=City
+${CITY} =                            City
+${STATE_LIST} =                      id=StateOrRegion
+${GENDER_RADIO} =                    gender
+${OPTIONAL_CHECKBOX} =               name=promos-name
+${SUBMIT_BUTTON} =                   //*[@id="loginform"]/div/div/div/div/form/button
+${CANCLE_BUTTON} =                   //*[@id="loginform"]/div/div/div/div/form/a
 
 *** Keywords ***
 

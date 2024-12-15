@@ -2,9 +2,9 @@
 Library    SeleniumLibrary
 *** Variables ***
 ${CUSTOMER_SERVICE_PAGE_HEADER} =    Our Happy Customers
-${TABLE_CUSTOMERS} =     id=customers
-${ROW_OF_TABLE_CUSTOMERS} =     //*[@id="customers"]/tbody/tr
-${NEW_CUSTOMER_BUTTON} =     id=new-customer
+${TABLE_CUSTOMERS} =                 id=customers
+${ROW_OF_TABLE_CUSTOMERS} =          //*[@id="customers"]/tbody/tr
+${NEW_CUSTOMER_BUTTON} =             id=new-customer
 *** Keywords ***
 
 Contacts page loads
