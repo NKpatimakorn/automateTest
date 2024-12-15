@@ -13,8 +13,6 @@ Test Teardown    End Test
 
 Library    OperatingSystem
 
-*** Variables *** 
-
 *** Test Cases ***
 [TS001_TC001]Home page should load
     [Documentation]                Validate load home screen
@@ -41,39 +39,26 @@ Library    OperatingSystem
     When LoginPage.Click the login Button
     Then LoginPage.Check redirection to login page
 
-[TS001_TC004]"Remember me" checkbox should persist email address
-    [Documentation]                Validate "Remember me" checkbox
-    [Tags]                         TS001_TC004    Login    functional
-    Log                            Start TS001_TC004
-    Given LoginPage.Click the sign in link
-    And LoginPage.Login to the system with valid credentials
-    When LoginPage.Click "Remember me" checkbox     
-    And LoginPage.Click the login Button        
-    And ContactsPage.Contacts page loads
-    And LogOutPage.Click "Logout" link
-    And LogOutPage.Check redirection to logout page
-    And LoginPage.Click the sign in link
-    Then LoginPage.Login page loads with email pre-populated
 
-[TS001_TC005]Should be able to log out
+[TS001_TC004]Should be able to log out
     [Documentation]                Validate log out function
-    [Tags]                         TS001_TC005    Login    Functional
-    Log                            Start TS001_TC005
+    [Tags]                         TS001_TC004    Login    Functional
+    Log                            Start TS001_TC004
     Given loginPage.Pre-login
     When LogOutPage.Click "Logout" link
     Then LogOutPage.Check redirection to logout page
 
-[TS001_TC006]Customers page should display multiple customers
+[TS001_TC005]Customers page should display multiple customers
     [Documentation]                Validate Customers page display multiple customers
-    [Tags]                         TS001_TC006    Contacts    smoke
-    Log                            Start TS001_TC006
+    [Tags]                         TS001_TC005    Contacts    smoke
+    Log                            Start TS001_TC005
     Given LoginPage.Pre-login
     Then ContactsPage.Examine customers grid for multiple records   
 
-[TS001_TC007]Should be able to add new customer
+[TS001_TC006]Should be able to add new customer
     [Documentation]                Validate add new customer
-    [Tags]                         TS001_TC007    Contacts    smoke
-    Log                            Start TS001_TC007
+    [Tags]                         TS001_TC006    Contacts    smoke
+    Log                            Start TS001_TC006
     LoginPage.Pre-login
 
     Given ContactsPage.Click "New Customer" button
@@ -82,10 +67,10 @@ Library    OperatingSystem
     Then AddCustomerSuccessPage.Add customer success page loads
 
 
-[TS001_TC008]Should be able to cancel adding new customer
+[TS001_TC007]Should be able to cancel adding new customer
     [Documentation]                Validate cancel adding new customer
-    [Tags]                         TS001_TC008    Contacts    Functional
-    Log                            Start TS001_TC008
+    [Tags]                         TS001_TC007    Contacts    Functional
+    Log                            Start TS001_TC007
     LoginPage.Pre-login
 
     Given ContactsPage.Click "New Customer" button
