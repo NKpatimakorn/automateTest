@@ -1,7 +1,7 @@
 *** Settings ***
-Documentation  Google Search Functionality
-Library  SeleniumLibrary
-Resource        ../Resources/commonFunctionality.robot
+Documentation      Google Search Functionality
+Library            SeleniumLibrary
+Resource           ../Resources/commonFunctionality.robot
 *** Variables ***
 ${Search_keyword}  mobile
 @{SEARCH_KEYWORD_LISTS}    red    blue    green    yellow
