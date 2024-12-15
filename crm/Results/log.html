@@ -5,7 +5,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="-1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="Robot Framework 7.0 (Python 3.11.5 on darwin)" name="Generator">
+<meta content="Robot Framework 7.1.1 (Python 3.9.6 on darwin)" name="Generator">
 <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKcAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAAqAAAAAAAAAAAAAAAAAAAALIAAAD/AAAA4AAAANwAAADcAAAA3AAAANwAAADcAAAA3AAAANwAAADcAAAA4AAAAP8AAACxAAAAAAAAAKYAAAD/AAAAuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC/AAAA/wAAAKkAAAD6AAAAzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN8AAAD/AAAA+gAAAMMAAAAAAAAAAgAAAGsAAABrAAAAawAAAGsAAABrAAAAawAAAGsAAABrAAAADAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAIsAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAANEAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAAAAAAAAMgAAADIAAAAyAAAAMgAAADIAAAAyAAAAMgAAADIAAAAFAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAADwAAAB8AAAAAAAAAGAAAABcAAAAAAAAAH8AAABKAAAAAAAAAAAAAAAAAAAA2gAAAP8AAAD6AAAAwwAAAAAAAADCAAAA/wAAACkAAADqAAAA4QAAAAAAAAD7AAAA/wAAALAAAAAGAAAAAAAAANoAAAD/AAAA+gAAAMMAAAAAAAAAIwAAAP4AAAD/AAAA/wAAAGAAAAAAAAAAAAAAAMkAAAD/AAAAigAAAAAAAADaAAAA/wAAAPoAAADDAAAAAAAAAAAAAAAIAAAAcAAAABkAAAAAAAAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAA2gAAAP8AAAD7AAAAywAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAN4AAAD/AAAAqwAAAP8AAACvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALIAAAD/AAAAsgAAAAAAAAC5AAAA/wAAAMoAAADAAAAAwAAAAMAAAADAAAAAwAAAAMAAAADAAAAAwAAAAMkAAAD/AAAAvAAAAAAAAAAAAAAAAAAAAKwAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAArQAAAAAAAAAAwAMAAIABAAAf+AAAP/wAAD/8AAAgBAAAP/wAAD/8AAA//AAAJIwAADHEAAA//AAAP/wAAB/4AACAAQAAwAMAAA==">
 <style media="all">
 :root {
@@ -1252,58 +1252,48 @@ window.stats = (function () {
             });
     }
     function calculatePercents(total, passed, failed, skipped) {
-        if (total == 0) {
+        if (total == 0)
             return [0.0, 0.0, 0.0];
-        }
         var pass = 100.0 * passed / total;
         var skip = 100.0 * skipped / total;
         var fail = 100.0 * failed / total;
         if (pass > 0 && pass < 0.1)
-            pass = 0.1
+            pass = 0.1;
         if (fail > 0 && fail < 0.1)
-            fail = 0.1
+            fail = 0.1;
         if (skip > 0 && skip < 0.1)
-            skip = 0.1
+            skip = 0.1;
         if (pass > 99.95 && pass < 100)
-            pass = 99.9
+            pass = 99.9;
         if (fail > 99.95 && fail < 100)
-            fail = 99.9
+            fail = 99.9;
         if (skip > 99.95 && skip < 100)
-            skip = 99.9
-        return [Math.round(pass*10)/10, Math.round(skip*10)/10, Math.round(fail*10)/10];
+            skip = 99.9;
+        return [round1(pass), round1(skip), round1(fail)];
     }
     function calculateWidths(num1, num2, num3) {
         if (num1 + num2 + num3 === 0)
             return [0.0, 0.0, 0.0];
         // Make small percentages better visible
         if (num1 > 0 && num1 < 1)
-            num1 = 1
+            num1 = 1.0;
         if (num2 > 0 && num2 < 1)
-            num2 = 1
+            num2 = 1.0;
         if (num3 > 0 && num3 < 1)
-            num3 = 1
+            num3 = 1.0;
         // Handle situation where some are rounded up
         while (num1 + num2 + num3 > 100) {
-            if (num1 > num2 && num1 > num3)
-                num1 -= 0.1;
-            else if (num2 > num1 && num2 > num3)
-                num2 -= 0.1;
-            else if (num3 > num1 && num3 > num2)
-                num3 -= 0.1;
-            else if (num1 > num3 && num1 == num2) {
-                num1 -= 0.1;
-                num2 -= 0.1;
-            }
-            else if (num1 > num2 && num1 == num3) {
-                num1 -= 0.1;
-                num3 -= 0.1;
-            }
-            else if (num2 > num1 && num2 == num3) {
-                num2 -= 0.1;
-                num3 -= 0.1;
-            }
+            if (num1 >= num2 && num1 >= num3)
+                num1 = round1(num1 - 0.1);
+            else if (num2 >= num1 && num2 >= num3)
+                num2 = round1(num2 - 0.1);
+            else
+                num3 = round1(num3 - 0.1);
         }
-        return [Math.ceil(num1*10)/10, Math.ceil(num2*10)/10, Math.ceil(num3*10)/10];
+        return [num1, num2, num3];
+    }
+    function round1(num) {
+        return Math.round(num*10) / 10;
     }
     return {
         Statistics: Statistics
@@ -2081,25 +2071,25 @@ storage = function () {
 window.output = {};
 </script>
 <script type="text/javascript">
-window.output["suite"] = [1,2,3,0,[],[0,0,11],[],[[4,0,5,[6,7],[0,10,1,8],[[0,9,10,0,11,12,0,0,[1,10,0],[[10,2,12]]],[0,13,0,0,0,14,0,0,[0,11,0],[[11,5,8]]],[0,15,0,0,0,0,0,0,[3,11,0],[]]]]],[],[1,0,1,0]];
+window.output["suite"] = [1,2,3,0,[],[0,0,195398],[],[[4,0,5,[6,7,8],[1,903,61866],[[1,9,10,0,0,0,0,0,[1,903,61441],[[0,11,12,0,13,14,0,0,[1,904,61434],[[904,2,15]]]]],[0,16,17,0,18,19,0,0,[1,62346,2],[[62347,2,19]]],[0,20,21,0,0,0,0,0,[1,62348,345],[[0,22,12,0,23,24,0,0,[1,62349,344],[]]]],[2,25,10,0,0,0,0,0,[1,62694,74],[[0,26,12,0,27,0,0,0,[1,62694,74],[]]]]]],[28,0,29,[30,7,31],[1,62769,15196],[[1,9,10,0,0,0,0,0,[1,62769,8747],[[0,11,12,0,13,14,0,0,[1,62770,8746],[[62770,2,15]]]]],[0,16,17,0,18,32,0,0,[1,71517,0],[[71517,2,32]]],[0,33,34,0,0,0,0,0,[1,71518,2716],[[0,35,12,0,36,37,0,0,[1,71518,2715],[[71520,2,38]]]]],[0,39,34,0,0,0,0,0,[1,74234,109],[[0,22,12,0,23,40,0,0,[1,74234,108],[]]]],[0,41,34,0,0,0,0,0,[1,74343,1217],[[0,16,17,0,18,42,0,0,[1,74343,0],[[74344,2,43]]],[0,44,12,0,45,46,0,0,[1,74344,631],[[74344,2,47]]],[0,48,12,0,49,50,0,0,[1,74975,585],[[74976,2,51],[75130,2,52]]]]],[0,53,34,0,0,0,0,0,[1,75560,868],[[0,54,12,0,55,56,0,0,[1,75561,867],[[75561,2,57]]]]],[0,58,59,0,0,0,0,0,[1,76428,1460],[[0,22,12,0,23,60,0,0,[1,76429,1459],[]]]],[2,25,10,0,0,0,0,0,[1,77888,77],[[0,26,12,0,27,0,0,0,[1,77888,76],[]]]]]],[61,0,62,[63,30,64],[1,77966,12619],[[1,9,10,0,0,0,0,0,[1,77967,8935],[[0,11,12,0,13,14,0,0,[1,77968,8933],[[77968,2,15]]]]],[0,16,17,0,18,65,0,0,[1,86903,0],[[86904,2,65]]],[0,33,34,0,0,0,0,0,[1,86904,2203],[[0,35,12,0,36,37,0,0,[1,86904,2202],[[86905,2,38]]]]],[0,66,17,0,18,67,0,0,[1,89107,0],[[89107,2,67]]],[0,53,34,0,0,0,0,0,[1,89108,1267],[[0,54,12,0,55,56,0,0,[1,89108,1266],[[89109,2,57]]]]],[0,68,34,0,0,0,0,0,[1,90376,130],[[0,22,12,0,23,40,0,0,[1,90378,128],[]]]],[2,25,10,0,0,0,0,0,[1,90506,79],[[0,26,12,0,27,0,0,0,[1,90507,78],[]]]]]],[69,0,70,[63,71,72],[0,90585,20460,73],[[1,9,10,0,0,0,0,0,[1,90586,9106],[[0,11,12,0,13,14,0,0,[1,90586,9104],[[90586,2,15]]]]],[0,16,17,0,18,74,0,0,[1,99692,0],[[99693,2,74]]],[0,33,34,0,0,0,0,0,[1,99693,3315],[[0,35,12,0,36,37,0,0,[1,99694,3314],[[99694,2,38]]]]],[0,41,34,0,0,0,0,0,[1,103008,1092],[[0,16,17,0,18,42,0,0,[1,103009,0],[[103009,2,43]]],[0,44,12,0,45,46,0,0,[1,103009,692],[[103009,2,47]]],[0,48,12,0,49,50,0,0,[1,103701,399],[[103702,2,51],[103832,2,52]]]]],[0,75,34,0,0,0,0,0,[1,104101,249],[[0,76,12,0,77,78,0,0,[1,104101,249],[[104101,2,79]]]]],[0,80,34,0,0,0,0,0,[1,104350,957],[[0,54,12,0,55,56,0,0,[1,104350,957],[[104351,2,57]]]]],[0,81,59,0,0,0,0,0,[1,105308,1352],[[0,22,12,0,23,60,0,0,[1,105308,1352],[]]]],[0,82,83,0,0,0,0,0,[1,106660,3471],[[0,35,12,0,36,84,0,0,[1,106661,3470],[[106661,2,85]]]]],[0,86,83,0,0,0,0,0,[1,110131,40],[[0,22,12,0,23,87,0,0,[1,110131,39],[]]]],[0,88,34,0,0,0,0,0,[1,110171,767],[[0,35,12,0,36,37,0,0,[1,110172,767],[[110172,2,38]]]]],[0,89,34,0,0,0,0,0,[0,110939,3],[[0,90,17,0,91,46,0,0,[0,110939,2],[[110940,5,73]]]]],[2,25,10,0,0,0,0,0,[1,110942,103],[[0,26,12,0,27,0,0,0,[1,110943,102],[]]]]]],[92,0,93,[94,71,95],[1,111046,18536],[[1,9,10,0,0,0,0,0,[1,111049,10293],[[0,11,12,0,13,14,0,0,[1,111049,10290],[[111050,2,15]]]]],[0,16,17,0,18,96,0,0,[1,121342,0],[[121343,2,96]]],[0,33,34,0,0,0,0,0,[1,121343,3574],[[0,35,12,0,36,37,0,0,[1,121344,3573],[[121344,2,38]]]]],[0,39,34,0,0,0,0,0,[1,124918,56],[[0,22,12,0,23,40,0,0,[1,124919,55],[]]]],[0,41,34,0,0,0,0,0,[1,124975,1353],[[0,16,17,0,18,42,0,0,[1,124975,0],[[124975,2,43]]],[0,44,12,0,45,46,0,0,[1,124975,730],[[124976,2,47]]],[0,48,12,0,49,50,0,0,[1,125706,622],[[125706,2,51],[125843,2,52]]]]],[0,80,34,0,0,0,0,0,[1,126328,789],[[0,54,12,0,55,56,0,0,[1,126328,789],[[126329,2,57]]]]],[0,81,59,0,0,0,0,0,[1,127118,1550],[[0,22,12,0,23,60,0,0,[1,127118,1549],[]]]],[0,97,83,0,0,0,0,0,[1,128668,714],[[0,35,12,0,36,84,0,0,[1,128668,713],[[128668,2,85]]]]],[0,98,83,0,0,0,0,0,[1,129382,106],[[0,22,12,0,23,87,0,0,[1,129382,106],[]]]],[2,25,10,0,0,0,0,0,[1,129489,93],[[0,26,12,0,27,0,0,0,[1,129489,92],[]]]]]],[99,0,100,[101,7,102],[1,129584,16553],[[1,9,10,0,0,0,0,0,[1,129586,9830],[[0,11,12,0,13,14,0,0,[1,129588,9826],[[129589,2,15]]]]],[0,16,17,0,18,103,0,0,[1,139416,1],[[139418,2,103]]],[0,33,34,0,0,0,0,0,[1,139418,2431],[[0,35,12,0,36,37,0,0,[1,139419,2430],[[139419,2,38]]]]],[0,41,34,0,0,0,0,0,[1,141849,1141],[[0,16,17,0,18,42,0,0,[1,141849,0],[[141850,2,43]]],[0,44,12,0,45,46,0,0,[1,141850,674],[[141850,2,47]]],[0,48,12,0,49,50,0,0,[1,142524,466],[[142524,2,51],[142645,2,52]]]]],[0,80,34,0,0,0,0,0,[1,142990,820],[[0,54,12,0,55,56,0,0,[1,142991,819],[[142991,2,57]]]]],[0,81,59,0,0,0,0,0,[1,143811,2124],[[0,22,12,0,23,60,0,0,[1,143811,2123],[]]]],[0,104,59,0,0,0,0,0,[1,145936,104],[[0,105,12,0,106,107,0,0,[1,145937,90],[]],[0,108,12,0,109,110,110,0,[1,146028,9],[[146037,2,111]]],[0,112,17,0,113,114,0,0,[1,146037,3],[]]]],[2,25,10,0,0,0,0,0,[1,146041,96],[[0,26,12,0,27,0,0,0,[1,146041,96],[]]]]]],[115,0,116,[101,7,117],[1,146137,26134],[[1,9,10,0,0,0,0,0,[1,146138,9476],[[0,11,12,0,13,14,0,0,[1,146139,9467],[[146140,2,15]]]]],[0,16,17,0,18,118,0,0,[1,155623,32],[[155654,2,118]]],[0,33,34,0,0,0,0,0,[1,155656,3413],[[0,35,12,0,36,37,0,0,[1,155657,3410],[[155657,2,38]]]]],[0,39,34,0,0,0,0,0,[1,159074,117],[[0,22,12,0,23,40,0,0,[1,159075,115],[]]]],[0,41,34,0,0,0,0,0,[1,159192,1606],[[0,16,17,0,18,42,0,0,[1,159192,0],[[159192,2,43]]],[0,44,12,0,45,46,0,0,[1,159193,1131],[[159193,2,47]]],[0,48,12,0,49,50,0,0,[1,160324,473],[[160325,2,51],[160483,2,52]]]]],[0,80,34,0,0,0,0,0,[1,160798,1123],[[0,54,12,0,55,56,0,0,[1,160799,1120],[[160800,2,57]]]]],[0,81,59,0,0,0,0,0,[1,161923,1862],[[0,22,12,0,23,60,0,0,[1,161924,1860],[]]]],[0,119,59,0,0,0,0,0,[1,163785,3176],[[0,35,12,0,36,120,0,0,[1,163786,3175],[[163786,2,121]]]]],[0,122,123,0,0,0,0,0,[1,166962,25],[[0,22,12,0,23,124,0,0,[1,166963,24],[]]]],[0,125,123,0,0,0,0,0,[1,166987,202],[[0,44,12,0,45,126,0,0,[1,166987,201],[[166988,2,127]]]]],[0,128,123,0,0,0,0,0,[1,167189,216],[[0,44,12,0,45,129,0,0,[1,167189,216],[[167190,2,130]]]]],[0,131,123,0,0,0,0,0,[1,167406,100],[[0,44,12,0,45,132,0,0,[1,167406,99],[[167406,2,133]]]]],[0,134,123,0,0,0,0,0,[1,167506,83],[[0,44,12,0,45,135,0,0,[1,167507,82],[[167507,2,136]]]]],[0,137,123,0,0,0,0,0,[1,167589,701],[[0,138,12,0,139,140,0,0,[1,167590,700],[[167590,2,141]]]]],[0,142,123,0,0,0,0,0,[1,168291,1525],[[0,143,12,0,144,145,0,0,[1,168291,1524],[[168292,2,146]]]]],[0,147,123,0,0,0,0,0,[1,169816,726],[[0,76,12,0,77,148,0,0,[1,169816,725],[[169817,2,149]]]]],[0,150,123,0,0,0,0,0,[1,170542,820],[[0,54,12,0,55,151,0,0,[1,170543,819],[[170544,2,152]]]]],[0,153,154,0,0,0,0,0,[1,171363,809],[[0,22,12,0,23,155,0,0,[1,171364,808],[]]]],[2,25,10,0,0,0,0,0,[1,172173,99],[[0,26,12,0,27,0,0,0,[1,172173,98],[]]]]]],[156,0,157,[101,94,158],[1,172272,23125],[[1,9,10,0,0,0,0,0,[1,172272,10571],[[0,11,12,0,13,14,0,0,[1,172272,10570],[[172273,2,15]]]]],[0,16,17,0,18,159,0,0,[1,182844,0],[[182845,2,159]]],[0,33,34,0,0,0,0,0,[1,182845,2395],[[0,35,12,0,36,37,0,0,[1,182846,2395],[[182846,2,38]]]]],[0,39,34,0,0,0,0,0,[1,185241,94],[[0,22,12,0,23,40,0,0,[1,185241,94],[]]]],[0,41,34,0,0,0,0,0,[1,185336,1155],[[0,16,17,0,18,42,0,0,[1,185336,0],[[185336,2,43]]],[0,44,12,0,45,46,0,0,[1,185336,623],[[185336,2,47]]],[0,48,12,0,49,50,0,0,[1,185960,531],[[185960,2,51],[186090,2,52]]]]],[0,80,34,0,0,0,0,0,[1,186491,899],[[0,54,12,0,55,56,0,0,[1,186491,898],[[186491,2,57]]]]],[0,81,59,0,0,0,0,0,[1,187390,1376],[[0,22,12,0,23,60,0,0,[1,187391,1375],[]]]],[0,119,59,0,0,0,0,0,[1,188766,1616],[[0,35,12,0,36,120,0,0,[1,188766,1616],[[188767,2,121]]]]],[0,122,123,0,0,0,0,0,[1,190383,23],[[0,22,12,0,23,124,0,0,[1,190384,23],[]]]],[0,125,123,0,0,0,0,0,[1,190407,162],[[0,44,12,0,45,126,0,0,[1,190407,161],[[190408,2,127]]]]],[0,128,123,0,0,0,0,0,[1,190569,260],[[0,44,12,0,45,129,0,0,[1,190569,259],[[190570,2,130]]]]],[0,131,123,0,0,0,0,0,[1,190830,347],[[0,44,12,0,45,132,0,0,[1,190830,347],[[190832,2,133]]]]],[0,134,123,0,0,0,0,0,[1,191178,107],[[0,44,12,0,45,135,0,0,[1,191178,107],[[191178,2,136]]]]],[0,137,123,0,0,0,0,0,[1,191285,592],[[0,138,12,0,139,140,0,0,[1,191285,591],[[191286,2,141]]]]],[0,142,123,0,0,0,0,0,[1,191878,1226],[[0,143,12,0,144,145,0,0,[1,191879,1224],[[191880,2,146]]]]],[0,147,123,0,0,0,0,0,[1,193104,507],[[0,76,12,0,77,148,0,0,[1,193105,506],[[193105,2,149]]]]],[0,160,123,0,0,0,0,0,[1,193612,1634],[[0,35,12,0,36,161,0,0,[1,193612,1634],[[193612,2,162]]]]],[0,58,59,0,0,0,0,0,[1,195246,55],[[0,22,12,0,23,60,0,0,[1,195246,55],[]]]],[2,25,10,0,0,0,0,0,[1,195301,96],[[0,26,12,0,27,0,0,0,[1,195302,95],[]]]]]]],[],[8,7,1,0]];
 </script>
 <script type="text/javascript">
 window.output["strings"] = [];
 </script>
 <script type="text/javascript">
-window.output["strings"] = window.output["strings"].concat(["*","*Crm","*/Users/nk/Documents/code/GitHub/automateTest/crm/Tests/Crm.robot","*../Tests/Crm.robot","*Home page should load","*<p>Validate load home screen\x3c/p>","*Home","*TS001_TC001","*No keyword with name 'Open Browser' found.","*Log","*BuiltIn","*<p>Logs the given message with the given level.\x3c/p>","*Start TS001_TC001","*Open Browser","*<a href=\"https://automationplayground.com/crm/\">https://automationplayground.com/crm/\x3c/a>    chrome","*Close Browser","eNqdjz9Pw0AMxfd8Cm+BoT2FbtkQtAQJQiXCwOjcueXUOzu6P0P49FxgYECIis3++T37eRuCBLAMB+sIavUSKUTFJ3UrOnviFJUWQ+rOpi6PCnMSj4kGiknp4NVSRHUT/DrIKKkGYXCWCa5auPeThGT5WMgYMMxQP5Mjttk/fIEaDljumhYexWRHvaSdZDbbJVULvYD/5MDoyfy0V0NATSPqE1x4iQkC6ZIZNDoHDmO6bCsoa5iq/evQPfX766Fb0PefyKiFDW7UaPmXSYmvpjm9CW+aZv1up79166Y5S7S0KzOzEzTnGaJNtJrKy3ik+A+LQpKIH4cNrgk="]);
+window.output["strings"] = window.output["strings"].concat(["*","*customerManagement","*/Users/nk/Documents/code/GitHub/automateTest/crm/Tests/customerManagement.robot","*../Tests/customerManagement.robot","*[TS001_TC001]Home page should load","*<p>Validate load home screen\x3c/p>","*Home","*smoke","*TS001_TC001","*Start Test","*Common","*Open Browser","*SeleniumLibrary","*<p>Opens a new browser instance to the optional <code>url\x3c/code>.\x3c/p>","*${URL}    @{BROWSER}","*Opening browser 'chrome' to base url '<a href=\"https://automationplayground.com/crm/\">https://automationplayground.com/crm/\x3c/a>'.","*Log","*BuiltIn","*<p>Logs the given message with the given level.\x3c/p>","*Start TS001_TC001","*Load Home Page","*HomePage","*Wait Until Page Contains","*<p>Waits until <code>text\x3c/code> appears on the current page.\x3c/p>","*${HOME_PAGE_HEADER}","*End Test","*Close Browser","*<p>Closes the current browser.\x3c/p>","*[TS001_TC002]Login should succeed with valid credentials","*<p>Validate Login with valid credentials\x3c/p>","*login","*TS001_TC002","*Start TS001_TC002","*Given LoginPage.Click the sign in link","*LoginPage","*Click Link","*<p>Clicks a link identified by <code>locator\x3c/code>.\x3c/p>","*Sign In","*Clicking link 'Sign In'.","*And LoginPage.Check redirection to login page","*${LOGIN_PAGE_HEADER}","*And LoginPage.Login to the system with valid credentials","*login with id=${VALID_EMAIL} password=${VALID_PASSWORD}","*login with id=email@gmail.com password=P@ssw0rd","*Input Text","*<p>Types the given <code>text\x3c/code> into the text field identified by <code>locator\x3c/code>.\x3c/p>","*${EMAIL_FIELD}    ${VALID_EMAIL}","*Typing text 'email@gmail.com' into text field '//*[@id=\"email-id\"]'.","*Input Password","*<p>Types the given password into the text field identified by <code>locator\x3c/code>.\x3c/p>","*${PASSWORD_FIELD}    ${VALID_PASSWORD}","*Typing password into text field '//*[@id=\"password\"]'.","*Temporally setting log level to: NONE","*When LoginPage.Click the login Button","*Click Button","*<p>Clicks the button identified by <code>locator\x3c/code>.\x3c/p>","*${LOGIN_BUTTON}","*Clicking button 'id=submit-id'.","*Then ContactsPage.Contacts page loads","*ContactsPage","*${CUSTOMER_SERVICE_PAGE_HEADER}","*[TS001_TC003]Login should fail with missing credentials","*<p>Validate Login with missing credentials\x3c/p>","*functional","*TS001_TC003","*Start TS001_TC003","*And Log","*skipping credentials","*Then LoginPage.Check redirection to login page","*[TS001_TC004]&quot;Remember me&quot; checkbox should persist email address","*<p>Validate \"Remember me\" checkbox\x3c/p>","*Login","*TS001_TC004","*//*[@id=\"email-id\"] != email@gmail.com","*Start TS001_TC004","*When LoginPage.Click &quot;Remember me&quot; checkbox","*Select Checkbox","*<p>Selects the checkbox identified by <code>locator\x3c/code>.\x3c/p>","*${REMEMBER_ME_CHECKBOX}","*Selecting checkbox '//*[@id=\"remember\"]'.","*And LoginPage.Click the login Button","*And ContactsPage.Contacts page loads","*And LogOutPage.Click &quot;Logout&quot; link","*LogOutPage","*${Sign_Out_BUTTON}","*Clicking link 'Sign Out'.","*And LogOutPage.Check redirection to logout page","*${SIGN_OUT_PAGE_HEADER}","*And LoginPage.Click the sign in link","*Then LoginPage.Login page loads with email pre-populated","*Should Be Equal","*<p>Fails if the given objects are unequal.\x3c/p>","*[TS001_TC005]Should be able to log out","*<p>Validate log out function\x3c/p>","*Functional","*TS001_TC005","*Start TS001_TC005","*When LogOutPage.Click &quot;Logout&quot; link","*Then LogOutPage.Check redirection to logout page","*[TS001_TC006]Customers page should display multiple customers","*<p>Validate Customers page display multiple customers\x3c/p>","*Contacts","*TS001_TC006","*Start TS001_TC006","*Then ContactsPage.Examine customers grid for multiple records","*Wait Until Element Is Visible","*<p>Waits until the element <code>locator\x3c/code> is visible.\x3c/p>","*${TABLE_CUSTOMERS}","*Get Element Count","*<p>Returns the number of elements matching <code>locator\x3c/code>.\x3c/p>","*${ROW_OF_TABLE_CUSTOMERS}","*${ROW_OF_TABLE_CUSTOMERS} = 6","*Should Be True","*<p>Fails if the given condition is not true.\x3c/p>","*${ROW_OF_TABLE_CUSTOMERS} &gt; 1","*[TS001_TC007]Should be able to add new customer","*<p>Validate add new customer\x3c/p>","*TS001_TC007","*Start TS001_TC007","*When ContactsPage.Click &quot;New Customer&quot; button","*${NEW_CUSTOMER_BUTTON}","*Clicking link 'id=new-customer'.","*And AddCustomerPage.Add customer page loads","*AddCustomerPage","*${ADD_CUSTOMER_PAGE_HEADER}","*And AddCustomerPage.Type customer email","*${NEW_EMAIL_FIELD}    ${NEW_EMAIL}","*Typing text 'newEmail@gmail.com' into text field 'id=EmailAddress'.","*And AddCustomerPage.Type customer first name","*${FIRST_NAME_FIELD}    ${FIRST_NAME}","*Typing text 'firstname' into text field 'id=FirstName'.","*And AddCustomerPage.Type customer last name","*${LAST_NAME_FIELD}    ${LAST_NAME}","*Typing text 'lastname' into text field 'id=LastName'.","*And AddCustomerPage.Type customer city","*${CITY_FIELD}    ${CITY}","*Typing text 'City' into text field 'id=City'.","*And AddCustomerPage.Select customer state","*Select From List By Value","*<p>Selects options from selection list <code>locator\x3c/code> by <code>values\x3c/code>.\x3c/p>","*${STATE_LIST}    HI","*Selecting options from selection list 'id=StateOrRegion' by value HI.","*And AddCustomerPage.Select gender","*Select Radio Button","*<p>Sets the radio button group <code>group_name\x3c/code> to <code>value\x3c/code>.\x3c/p>","*${GENDER_RADIO}    male","*Selecting 'male' from radio button 'gender'.","*And AddCustomerPage.Optionally check promotion checkbox","*${OPTIONAL_CHECKBOX}","*Selecting checkbox 'name=promos-name'.","*And AddCustomerPage.Click &quot;Submit&quot; button","*${SUBMIT_BUTTON}","*Clicking button '//*[@id=\"loginform\"]/div/div/div/div/form/button'.","*Then AddCustomerSuccessPage.Add customer success page loads","*AddCustomerSuccessPage","*${ADD_CUSTOMER_SUCCESS_PAGE_HEADER}","*[TS001_TC008]Should be able to cancel adding new customer","*<p>Validate cancel adding new customer\x3c/p>","*TS001_TC008","*Start TS001_TC008","*And AddCustomerPage.Click &quot;Cancle&quot; button","*${CANCLE_BUTTON}","*Clicking link '//*[@id=\"loginform\"]/div/div/div/div/form/a'."]);
 </script>
 <script type="text/javascript">
-window.output["stats"] = [[{"elapsed":"00:00:00","fail":1,"label":"All Tests","pass":0,"skip":0}],[{"elapsed":"00:00:00","fail":1,"label":"Home","pass":0,"skip":0},{"elapsed":"00:00:00","fail":1,"label":"TS001_TC001","pass":0,"skip":0}],[{"elapsed":"00:00:00","fail":1,"id":"s1","label":"Crm","name":"Crm","pass":0,"skip":0}]];
+window.output["stats"] = [[{"elapsed":"00:03:14","fail":1,"label":"All Tests","pass":7,"skip":0}],[{"elapsed":"00:01:06","fail":0,"label":"Contacts","pass":3,"skip":0},{"elapsed":"00:01:15","fail":1,"label":"functional","pass":3,"skip":0},{"elapsed":"00:01:02","fail":0,"label":"Home","pass":1,"skip":0},{"elapsed":"00:01:07","fail":1,"label":"login","pass":3,"skip":0},{"elapsed":"00:02:00","fail":0,"label":"smoke","pass":4,"skip":0},{"elapsed":"00:01:02","fail":0,"label":"TS001_TC001","pass":1,"skip":0},{"elapsed":"00:00:15","fail":0,"label":"TS001_TC002","pass":1,"skip":0},{"elapsed":"00:00:13","fail":0,"label":"TS001_TC003","pass":1,"skip":0},{"elapsed":"00:00:20","fail":1,"label":"TS001_TC004","pass":0,"skip":0},{"elapsed":"00:00:19","fail":0,"label":"TS001_TC005","pass":1,"skip":0},{"elapsed":"00:00:17","fail":0,"label":"TS001_TC006","pass":1,"skip":0},{"elapsed":"00:00:26","fail":0,"label":"TS001_TC007","pass":1,"skip":0},{"elapsed":"00:00:23","fail":0,"label":"TS001_TC008","pass":1,"skip":0}],[{"elapsed":"00:03:15","fail":1,"id":"s1","label":"customerManagement","name":"customerManagement","pass":7,"skip":0}]];
 </script>
 <script type="text/javascript">
-window.output["errors"] = [[10,4,16]];
+window.output["errors"] = [];
 </script>
 <script type="text/javascript">
-window.output["baseMillis"] = 1734005067995;
+window.output["baseMillis"] = 1734292260863;
 </script>
 <script type="text/javascript">
-window.output["generated"] = 15;
+window.output["generated"] = 195420;
 </script>
 <script type="text/javascript">
 window.output["expand_keywords"] = null;
