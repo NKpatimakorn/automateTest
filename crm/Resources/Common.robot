@@ -8,7 +8,7 @@ ${URL} =    https://automationplayground.com/crm/
 *** Keywords ***
 Start Test
      Open Browser    ${URL}   @{BROWSER}
-
+     Set selenium timeout    10s
 End Test
     Close Browser
     
