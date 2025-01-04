@@ -9,7 +9,7 @@ Resource    ../Resources/Page objects/AddCustomerSuccessPage.robot
 Test Setup       Start Test
 Test Teardown    End Test
 
-#robot -d crm/Results crm/Tests/customerManagement.robot
+#robot -d customerManagementWeb/Results customerManagementWeb/Tests/customerManagement.robot
 
 Library    OperatingSystem
 

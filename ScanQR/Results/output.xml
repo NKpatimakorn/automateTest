@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.11.3 on darwin)" generated="2025-01-05T04:52:48.823682" rpa="false" schemaversion="5">
+<suite id="s1" name="ScanQR" source="/Users/nk/Documents/code/GitHub/automateTest/ScanQR/test/ScanQR.robot">
+<test id="s1-t1" name="Upload QR Code and Verify Redirection" line="13">
+<kw name="Start Test" owner="Common" type="SETUP">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-01-05T04:52:49.015081" level="INFO">Opening browser 'Chrome' to base url 'https://webqr.com/index.html'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-01-05T04:52:49.014971" elapsed="5.288630"/>
+</kw>
+<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
+<arg>10s</arg>
+<doc>Sets the timeout that is used by various keywords.</doc>
+<status status="PASS" start="2025-01-05T04:52:54.317987" elapsed="0.005638"/>
+</kw>
+<status status="PASS" start="2025-01-05T04:52:49.014634" elapsed="5.309494"/>
+</kw>
+<kw name="Given QRCode.Open Scan QR Page" owner="QRcode">
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>QR Code scanner</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-01-05T04:52:54.326367" elapsed="0.013919"/>
+</kw>
+<status status="PASS" start="2025-01-05T04:52:54.325515" elapsed="0.014881"/>
+</kw>
+<kw name="When QRcode.Upload youtube QR" owner="QRcode">
+<kw name="Click Image" owner="SeleniumLibrary">
+<msg time="2025-01-05T04:52:54.344238" level="INFO">Clicking image '//*[@id="qrimg"]'.</msg>
+<arg>//*[@id="qrimg"]</arg>
+<doc>Clicks an image identified by ``locator``.</doc>
+<status status="PASS" start="2025-01-05T04:52:54.341321" elapsed="0.065064"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>//*[@id="imghelp"]/input</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-01-05T04:52:54.406587" elapsed="0.013018"/>
+</kw>
+<kw name="Choose File" owner="SeleniumLibrary">
+<msg time="2025-01-05T04:52:54.419885" level="INFO">Sending /Users/nk/Documents/code/GitHub/automateTest/ScanQR/Resources/youtube.png to browser.</msg>
+<arg>//*[@id="imghelp"]/input</arg>
+<arg>${QR_IMAGE_PATH}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<status status="PASS" start="2025-01-05T04:52:54.419723" elapsed="0.025968"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>//*[@id="result"]/a</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-01-05T04:52:54.445817" elapsed="0.227145"/>
+</kw>
+<kw name="Click Link" owner="SeleniumLibrary">
+<msg time="2025-01-05T04:52:54.673191" level="INFO">Clicking link '//*[@id="result"]/a'.</msg>
+<arg>//*[@id="result"]/a</arg>
+<doc>Clicks a link identified by ``locator``.</doc>
+<status status="PASS" start="2025-01-05T04:52:54.673079" elapsed="0.297716"/>
+</kw>
+<status status="PASS" start="2025-01-05T04:52:54.340791" elapsed="0.630447"/>
+</kw>
+<kw name="Then QRcode.Check redirection to youtube website" owner="QRcode">
+<kw name="Get Window Handles" owner="SeleniumLibrary">
+<msg time="2025-01-05T04:52:54.983581" level="INFO">${window_handles} = ['07CAC80D2C28DA76029A2583BA4A26C9', '576CD3927BE43A963A1DFE3B06187302']</msg>
+<var>${window_handles}</var>
+<doc>Returns all child window handles of the selected browser as a list.</doc>
+<status status="PASS" start="2025-01-05T04:52:54.972201" elapsed="0.011407"/>
+</kw>
+<kw name="Switch Window" owner="SeleniumLibrary">
+<arg>${window_handles}[1]</arg>
+<doc>Switches to browser window matching ``locator``.</doc>
+<status status="PASS" start="2025-01-05T04:52:54.983724" elapsed="0.069332"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>youtube</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-01-05T04:52:55.053164" elapsed="4.246940"/>
+</kw>
+<status status="PASS" start="2025-01-05T04:52:54.971784" elapsed="4.329138"/>
+</kw>
+<kw name="End Test" owner="Common" type="TEARDOWN">
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-01-05T04:52:59.305321" elapsed="0.179583"/>
+</kw>
+<status status="PASS" start="2025-01-05T04:52:59.302179" elapsed="0.182791"/>
+</kw>
+<status status="PASS" start="2025-01-05T04:52:49.014346" elapsed="10.470687"/>
+</test>
+<status status="PASS" start="2025-01-05T04:52:48.824581" elapsed="10.660743"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="ScanQR">ScanQR</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
